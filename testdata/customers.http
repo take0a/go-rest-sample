@@ -1,0 +1,27 @@
+POST http://localhost:3000/customers
+Content-Type: application/json
+
+{
+    "customerId": 1,
+    "name": "shohei ohtani",
+    "address": "los angeles angels"
+}
+
+###
+
+GET http://localhost:3000/customers/1
+
+###
+
+PUT http://localhost:3000/customers/1
+Content-Type: application/json
+
+{
+    "customerId": 1,
+    "name": "shohei ohtani",
+    "address": "new york yankees"
+}
+
+###
+
+DELETE http://localhost:3000/customers/1

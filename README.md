@@ -73,34 +73,33 @@ erDiagram
 classDiagram
     Router "1" --> "1" Controller
     class Router {
-        Get(pattern string, handlerFn http.HandlerFunc)
-        Post(pattern string, handlerFn http.HandlerFunc)
-        Put(pattern string, handlerFn http.HandlerFunc)
-        Delete(pattern string, handlerFn http.HandlerFunc)
+        Get(string, http.HandlerFunc)
+        Poststring, http.HandlerFunc)
+        Put(string, http.HandlerFunc)
+        Delete(string, http.HandlerFunc)
     }
     Controller "1" *-- "1" Service
     Controller "1" *-- "1" DB
     class Controller {
-        get(w http.ResponseWriter, r *http.Request)
-        post(w http.ResponseWriter, r *http.Request)
-        put(w http.ResponseWriter, r *http.Request)
-        delete(w http.ResponseWriter, r *http.Request)
+        Get(http.ResponseWriter, *http.Request)
+        Post(http.ResponseWriter, *http.Request)
+        Put(http.ResponseWriter, *http.Request)
+        Delete(http.ResponseWriter, *http.Request)
     }
     class DB {
-        Connect(driverName, dataSourceName string) (*DB, error)
-       Beginx() (*Tx, error)
+       BeginTx(context.Context, *TxOptions) (*Tx, error)
     }
-    Service "1" --> "*" Store
+    Service "1" --> "*" Dao
     class Service {
-        find(ctx context.Context, tx sqlx.Tx, key OrderKey) (OrderDto, error)
-        insert(ctx context.Context, tx sqlx.Tx, dto OrderDto) (OrderDto, error)
-        update(ctx context.Context, tx sqlx.Tx, dto OrderDto) (OrderDto, error)
-        delete(ctx context.Context, tx sqlx.Tx, key OrderKey) error
+        Create(context.Context, *sql.Tx, *Dto) (*Dto, error)
+        Read(context.Context, *sql.Tx, *Key) (*Dto, error)
+        Update(context.Context, *sql.Tx, *Dto) (*Dto, error)
+        Delete(context.Context, *sql.Tx, *Key) error
     }
-    class Store {
-        find(ctx context.Context, tx sqlx.Tx, key *OrderKey) (*OrderHeader, error)
-        insert(ctx context.Context, tx sqlx.Tx, entity *OrderHeader) (*OrderHeader, error)
-        update(ctx context.Context, tx sqlx.Tx, entity *OrderHeader) (*OrderHeader, error)
-        delete(ctx context.Context, tx sqlx.Tx, key *OrderKey) error
+    class Dao {
+        Insert(context.Context, *sql.Tx, *Entity) (*Entity, error)
+        Select(context.Context, *sql.Tx, *Key) (*Entity, error)
+        Update(context.Context, *sql.Tx, *Entity) (*Entity, error)
+        Delete(context.Context, *sql.Tx, *Key) error
     }
 ```

@@ -1,0 +1,27 @@
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+    "productId": 1,
+    "name": "cap",
+    "pricePerUnit": 20
+}
+
+###
+
+GET http://localhost:3000/products/1
+
+###
+
+PUT http://localhost:3000/products/1
+Content-Type: application/json
+
+{
+    "productId": 1,
+    "name": "t-shirt",
+    "pricePerUnit": 10
+}
+
+###
+
+DELETE http://localhost:3000/products/1

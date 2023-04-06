@@ -1,0 +1,43 @@
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+    "orderId": 1,
+    "customerId": 1,
+    "orderDate": "2023-04-01",
+    "details": [
+        {
+            "rowNumber": 1,
+            "productId": 1,
+            "quantity": 2,
+            "pricePerUnit": 1000
+        }
+    ]
+}
+
+###
+
+GET http://localhost:3000/orders/1
+
+###
+
+PUT http://localhost:3000/orders/1
+Content-Type: application/json
+
+{
+    "orderId": 1,
+    "customerId": 2,
+    "orderDate": "2023-04-01",
+    "details": [
+        {
+            "rowNumber": 1,
+            "productId": 2,
+            "quantity": 3,
+            "pricePerUnit": 2000
+        }
+    ]
+}
+
+###
+
+DELETE http://localhost:3000/orders/1
