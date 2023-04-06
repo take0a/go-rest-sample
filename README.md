@@ -89,7 +89,7 @@ classDiagram
     class DB {
        BeginTx(context.Context, *TxOptions) (*Tx, error)
     }
-    Service "1" --> "*" Dao
+    Service "1" *-- "*" Dao
     class Service {
         Create(context.Context, *sql.Tx, *Dto) (*Dto, error)
         Read(context.Context, *sql.Tx, *Key) (*Dto, error)
