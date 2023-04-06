@@ -74,7 +74,7 @@ classDiagram
     Router "1" --> "1" Controller
     class Router {
         Get(string, http.HandlerFunc)
-        Poststring, http.HandlerFunc)
+        Post(string, http.HandlerFunc)
         Put(string, http.HandlerFunc)
         Delete(string, http.HandlerFunc)
     }
